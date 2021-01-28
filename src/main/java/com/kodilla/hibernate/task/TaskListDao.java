@@ -1,4 +1,4 @@
-package com.kodilla.hibernate.task.dao;
+package com.kodilla.hibernate.task;
 
 import com.kodilla.hibernate.task.Task;
 import org.springframework.data.repository.CrudRepository;
@@ -9,6 +9,6 @@ import java.util.List;
 
 @Transactional
 @Repository
-public interface TaskDao extends CrudRepository<Task, Integer> {
-    List<Task> findByDuration(int duration);
+public interface TaskListDao extends CrudRepository<TaskList, Integer> {
+
 }
