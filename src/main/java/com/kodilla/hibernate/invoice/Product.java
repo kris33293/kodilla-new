@@ -12,7 +12,7 @@ public class Product {
 
     private int id;
     private String name;
-    private List<Product> products = new ArrayList<>();
+    private Product product;
 
     public Product(){
 
@@ -23,18 +23,14 @@ public class Product {
         this.name = name;
     }
 
-    @OneToMany(
-            targetEntity = Product.class,
-            mappedBy = "productList",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    public List<Product> getProducts() {
-        return products;
+    @ManyToOne
+    @JoinColumn(name = "PRODUCTLIST_ID")
+    public Product getProducts() {
+        return product;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setProducts(Product product) {
+        this.product = product;
     }
 
     @Id

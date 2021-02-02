@@ -12,11 +12,11 @@ import java.util.List;
 public class Item {
 
     private int id;
-    private Product product;
     private BigDecimal price;
     private int quantity;
     private BigDecimal value;
-    private List<Item> items = new ArrayList<>();
+    private Invoice invoice;
+    private List<Product> products = new ArrayList<>();
 
 
     public Item() {
@@ -24,27 +24,13 @@ public class Item {
     }
 
 
-    public Item(int id, Product product, BigDecimal price, int quantity, BigDecimal value) {
+    public Item(int id,  BigDecimal price, int quantity, BigDecimal value) {
         this.id = id;
-        this.product = product;
         this.price = price;
         this.quantity = quantity;
         this.value = value;
     }
 
-    @OneToMany(
-            targetEntity = Item.class,
-            mappedBy = "itemList",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
 
     @Id
     @GeneratedValue
@@ -59,15 +45,20 @@ public class Item {
     }
 
 
-
-    @ManyToOne
-    @JoinColumn(name = "PRODUCTLIST_ID")
-    public Product getProduct() {
-        return product;
+    @OneToMany(
+            targetEntity = Product.class,
+            mappedBy = "productList",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    public List<Product> getProduct() {
+        return products;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+
+    public void setProducts(Product product) {
+
+        products.add(product);
     }
 
     @NotNull
@@ -98,5 +89,14 @@ public class Item {
 
     public void setValue(BigDecimal value) {
         this.value = value;
+    }
+
+    @ManyToOne
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
 }
