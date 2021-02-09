@@ -47,7 +47,7 @@ public class Item {
 
     @OneToMany(
             targetEntity = Product.class,
-            mappedBy = "productList",
+            mappedBy = "item",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
@@ -56,9 +56,8 @@ public class Item {
     }
 
 
-    public void setProducts(Product product) {
-
-        products.add(product);
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     @NotNull
@@ -91,7 +90,7 @@ public class Item {
         this.value = value;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     public Invoice getInvoice() {
         return invoice;
     }

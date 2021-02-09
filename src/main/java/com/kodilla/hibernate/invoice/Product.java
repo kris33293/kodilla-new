@@ -12,7 +12,7 @@ public class Product {
 
     private int id;
     private String name;
-    private Product product;
+    private Item item;
 
     public Product(){
 
@@ -23,14 +23,14 @@ public class Product {
         this.name = name;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "PRODUCTLIST_ID")
-    public Product getProducts() {
-        return product;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ITEM_ID")
+    public Item getItem() {
+        return item;
     }
 
-    public void setProducts(Product product) {
-        this.product = product;
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     @Id
