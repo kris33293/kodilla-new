@@ -32,16 +32,17 @@ public class InvoiceDaoTestSuite {
 
         Invoice invoice = new Invoice(1,"2021/01/258");
 
-        List<Product> products = Arrays.asList(product1,product2);
-        item1.setProducts(products);
+        List<Item> items = Arrays.asList(item1);
+        item1.setProduct(product1);
+        item1.setProduct(product2);
 
 //
  //       item2.setProducts(product1);
    //     item2.setProducts(product2);
-        product1.setItem(item1);
-        product2.setItem(item1);
+        product1.setItem(items);
 
-        invoice.setItem(item1);
+
+        invoice.setItems(items);
 //        invoice.setItem(item2);
         //When
 

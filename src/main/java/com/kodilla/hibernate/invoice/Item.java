@@ -10,13 +10,12 @@ import java.util.List;
 @Entity
 @Table(name = "ITEMS")
 public class Item {
-
     private int id;
+    private Product product;
     private BigDecimal price;
     private int quantity;
     private BigDecimal value;
     private Invoice invoice;
-    private List<Product> products = new ArrayList<>();
 
 
     public Item() {
@@ -45,19 +44,16 @@ public class Item {
     }
 
 
-    @OneToMany(
-            targetEntity = Product.class,
-            mappedBy = "item",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    public List<Product> getProduct() {
-        return products;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "PRODUCT_ID")
+    public Product getProduct() {
+        return product;
     }
 
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setProduct(Product products) {
+        this.product = products;
     }
 
     @NotNull

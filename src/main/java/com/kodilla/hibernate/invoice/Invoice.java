@@ -11,7 +11,6 @@ import java.util.List;
 public class Invoice {
 
     private int id;
-    private Item item;
     private String number;
     private List<Item> items = new ArrayList<>();
 
@@ -25,15 +24,6 @@ public class Invoice {
         this.number = number;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "ITEMLIST_ID")
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
-    }
 
     @Id
     @GeneratedValue
