@@ -1,10 +1,17 @@
 package com.kodilla.hibernate.manytomany;
 
+import com.kodilla.hibernate.task.Task;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
+@NamedNativeQuery(
+        name = "Company.retrieveCompanyByFirstThreeDigitOfName",
+        query = "SELECT * FROM Companies WHERE LEFT(COMPANY_NAME, :LENGTH) = :DIGITS",
+        resultClass = Company.class
+)
 
 @Entity
 @Table(name = "COMPANIES")
